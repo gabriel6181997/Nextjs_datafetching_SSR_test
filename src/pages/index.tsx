@@ -1,5 +1,4 @@
 import Head from 'next/head'
-import Image from 'next/image'
 import styles from 'src/styles/Home.module.css'
 import { UserBox } from "src/components/UserBox"
 import Link from "next/link";
