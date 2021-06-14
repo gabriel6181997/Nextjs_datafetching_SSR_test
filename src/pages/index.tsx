@@ -2,7 +2,7 @@ import Head from 'next/head'
 import Image from 'next/image'
 import styles from 'src/styles/Home.module.css'
 import { UserBox } from "src/components/UserBox"
-import Link from "next"
+import Link from "next/link";
 
 export async function getStaticProps() {
   const res = await fetch(
@@ -17,9 +17,8 @@ export async function getStaticProps() {
   }
 }
 
-export default function Home(props: any) {
+const  Home = (props: any) =>  {
   const {dataLists} = props;
-  console.log({dataLists});
 
   return (
     <div className={styles.container}>
@@ -33,16 +32,25 @@ export default function Home(props: any) {
         <h1 className={styles.title}>Next.js Data Fetching SSR Test</h1>
 
         <div className={styles.grid}>
-
-          {/* <Link href={/}>
-            <a> */}
+         {dataLists.map(data => {
+           return(
+          <Link
+            key={data.id}
+            href={{
+              pathname: "/users/[slug]",
+              query: {slug: data.id}
+            }}
+          >
+            <a>
             <UserBox
-              name="Name"
-              username="username"
-              email="email"
+              name={data.name}
+              username={data.username}
+              email={data.email}
             />
-            {/* </a>
-          </Link> */}
+            </a>
+          </Link>
+           )
+         })}
 
         </div>
       </main>
@@ -63,3 +71,5 @@ export default function Home(props: any) {
     </div>
   )
 }
+
+export default Home
