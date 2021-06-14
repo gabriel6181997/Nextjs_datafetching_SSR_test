@@ -1,6 +1,7 @@
 import { getAllUserIds, getUserData } from "src/util/getFunctions";
 import styles from 'src/styles/Home.module.css'
 
+
 export async function getStaticProps({params}){
   const {data} = await getUserData(params.id);
   return {
@@ -14,7 +15,7 @@ export async function getStaticPaths() {
   const paths = await getAllUserIds();
   return {
     paths,
-    fallback: false,
+    fallback: 'blocking',
   }
 }
 
