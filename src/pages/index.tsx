@@ -2,8 +2,11 @@ import Head from 'next/head'
 import styles from 'src/styles/Home.module.css'
 import { UserBox } from "src/components/UserBox"
 import Link from "next/link";
+import { InferGetServerSidePropsType } from 'next'
+import { UserInfoType } from 'src/util/type';
 
-export async function getStaticProps() {
+
+export async function getServerSideProps() {
   const res = await fetch(
     `https://jsonplaceholder.typicode.com/users`
   );
@@ -16,8 +19,7 @@ export async function getStaticProps() {
   }
 }
 
-const  Home = (props: any) =>  {
-  const {dataLists} = props;
+const  Home = ({dataLists}: InferGetServerSidePropsType<typeof getServerSideProps>) =>  {
 
   return (
     <div className={styles.container}>
