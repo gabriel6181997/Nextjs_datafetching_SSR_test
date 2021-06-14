@@ -31,7 +31,7 @@ const  Home = (props: any) =>  {
         <h1 className={styles.title}>Next.js Data Fetching SSR Test</h1>
 
         <div className={styles.grid}>
-         {dataLists.map(data => {
+         {dataLists.map((data) => {
            return(
           <Link
             key={data.id}
