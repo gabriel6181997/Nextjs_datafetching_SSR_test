@@ -2,8 +2,25 @@ import Head from 'next/head'
 import Image from 'next/image'
 import styles from 'src/styles/Home.module.css'
 import { UserBox } from "src/components/UserBox"
+import Link from "next"
 
-export default function Home() {
+export async function getStaticProps() {
+  const res = await fetch(
+    `https://jsonplaceholder.typicode.com/users`
+  );
+  const dataLists = await res.json();
+
+  return {
+    props: {
+      dataLists,
+    }
+  }
+}
+
+export default function Home(props: any) {
+  const {dataLists} = props;
+  console.log({dataLists});
+
   return (
     <div className={styles.container}>
       <Head>
@@ -16,12 +33,16 @@ export default function Home() {
         <h1 className={styles.title}>Next.js Data Fetching SSR Test</h1>
 
         <div className={styles.grid}>
-          <UserBox
-            name="Name"
-            username="username"
-            email="email"
-          />
 
+          {/* <Link href={/}>
+            <a> */}
+            <UserBox
+              name="Name"
+              username="username"
+              email="email"
+            />
+            {/* </a>
+          </Link> */}
 
         </div>
       </main>
