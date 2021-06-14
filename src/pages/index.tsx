@@ -33,7 +33,7 @@ const  Home = ({dataLists}: InferGetServerSidePropsType<typeof getServerSideProp
         <h1 className={styles.title}>Next.js Data Fetching Test</h1>
 
         <div className={styles.grid}>
-         {dataLists.map((data) => {
+         {dataLists.map((data : UserInfoType) => {
            return(
           <Link
             key={data.id}
