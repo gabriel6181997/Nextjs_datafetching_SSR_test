@@ -1,9 +1,17 @@
 import { getAllUserIds, getUserData } from "src/util/getFunctions";
-import styles from 'src/styles/Home.module.css'
+import styles from 'src/styles/Home.module.css';
+import { GetStaticProps, GetStaticPaths } from 'next';
+import { UserInfoType } from "src/util/type";
+import { FC } from "react";
 
+// interface userDataProps {
+//   userData: UserInfoType
+// }
 
-export async function getStaticProps({params}){
-  const {data} = await getUserData(params.id);
+export const getStaticProps: GetStaticProps = async ({params}) => {
+  // if(params?.id) {
+    const {data} = await getUserData(params.id);
+  // }
   return {
     props: {
       userData: data,
@@ -11,7 +19,7 @@ export async function getStaticProps({params}){
   };
 }
 
-export async function getStaticPaths() {
+export  const getStaticPaths: GetStaticPaths = async () => {
   const paths = await getAllUserIds();
   return {
     paths,
@@ -19,8 +27,8 @@ export async function getStaticPaths() {
   }
 }
 
-const UserInfo = ( {userData}) => {
-  console.log(userData);
+// const UserInfo: FC<UserInfoType> = ({userData}): JSX.Element  => {
+const UserInfo = ({userData})  => {
 
    return(
      <div className={styles.userInfo}>
