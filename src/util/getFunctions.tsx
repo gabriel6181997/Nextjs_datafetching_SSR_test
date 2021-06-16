@@ -1,6 +1,6 @@
 export async function getAllUserIds() {
    const res = await fetch(`https://jsonplaceholder.typicode.com/users`);
-   const data = await res.json();
+   const data : UserInfoType[] = await res.json();
 
    return data.map((user: any) => {
      return {
