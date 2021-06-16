@@ -4,9 +4,9 @@ import { GetStaticProps, GetStaticPaths } from 'next';
 import { UserInfoType } from "src/util/type";
 import { FC } from "react";
 
-// interface userDataProps {
-//   userData: UserInfoType
-// }
+interface userDataProps {
+  userData: UserInfoType
+}
 
 export const getStaticProps: GetStaticProps = async ({params}) => {
   const {data} = await getUserData(params?.id as string);
@@ -35,8 +35,7 @@ export  const getStaticPaths: GetStaticPaths = async () => {
   }
 }
 
-// const UserInfo: FC<UserInfoType> = ({userData}): JSX.Element  => {
-const UserInfo = ({userData})  => {
+const UserInfo:FC<userDataProps> = ({userData})  => {
 
    return(
      <div className={styles.userInfo}>
