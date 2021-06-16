@@ -9,9 +9,17 @@ import { FC } from "react";
 // }
 
 export const getStaticProps: GetStaticProps = async ({params}) => {
-  // if(params?.id) {
-    const {data} = await getUserData(params.id);
-  // }
+  const {data} = await getUserData(params?.id as string);
+
+  if (!{data}) {
+    return {
+      redirect: {
+        destination: '/',
+        permanent: false,
+      },
+    }
+  };
+
   return {
     props: {
       userData: data,
